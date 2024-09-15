@@ -1,0 +1,6 @@
+aiogram==3.x
+python-dotenv
+tortoise-orm
+APScheduler
+loguru
+aiohttp

@@ -1,0 +1,1333 @@
+Структура проекта:
+
+Папка: project
+
+Папка: project\bot
+
+Папка: project\bot\data
+
+Папка: project\bot\handlers
+
+Название файла: constants.py
+Расположение файла: ./project\bot\data\constants.py
+
+
+
+Название файла: __init__.py
+Расположение файла: ./project\bot\data\__init__.py
+
+
+
+Название файла: messages.py
+Расположение файла: ./project\bot\data\messages.py
+
+# messages.py
+
+# Сообщения для бота
+MESSAGES = {
+    "start": {
+        "ru": """
+Привет! 👋 Меня зовут Твист, я руководитель листа продвижения.
+
+Ты можешь добавить свой канал или группу для продвижения и получить доступ к нашей огромной аудитории! 🔥
+
+Также у нас есть платный тариф без публикации в твоем канале. Если интересно, расскажу подробнее! 💬
+
+<a href="https://t.me/GPORNLIST/2">ПРОЧИТАЙТЕ ПРАВИЛА</a>""",
+        "en": """
+Hi! 👋 My name is Twist, and I'm the manager of the promotion list.
+
+You can add your channel or group for promotion and gain access to our massive audience! 🔥
+
+We also offer a paid plan that doesn't require posting in your channel. If you're interested, I can tell you more! 💬
+
+<a href="https://t.me/GPORNLIST/2">READ THE RULES</a>"""
+    },
+    "choose_language": {
+        "ru": "ВЫБЕРИ СВОЙ ЯЗЫК\nCHOOSE YOUR LANGUAGE",
+        "en": "CHOOSE YOUR LANGUAGE\nВЫБЕРИ СВОЙ ЯЗЫК"
+    },
+    "change_language": {
+        "ru": "Язык переключен на русский 🇷🇺",
+        "en": "Language switched to English 🇬🇧"
+    },
+    "showme": {
+        "ru": "Вот актуальный лист: 📋\n\nЗдесь будет информация о текущем листе продвижения.",
+        "en": "Here is the current list: 📋\n\nThis is where information about the current promotion list will be."
+    },
+    "audlist": {
+        "ru": "Общая аудитория списка: {total} подписчиков",
+        "en": "Total audience of the list: {total} subscribers"
+    },
+    "audbot": {
+        "ru": "Общая аудитория бота: {total} пользователей",
+        "en": "Total audience of the bot: {total} users"
+    },
+    "adsbot": {
+        "ru": "Ты можешь заказать рекламу в боте. Пожалуйста, пришли мне свой пост (медиа + описание). 📩",
+        "en": "You can order advertising in the bot. Please send me your post (media + description). 📩"
+    },
+    "adslist": {
+        "ru": "Ты можешь заказать рекламу в списке. Пожалуйста, пришли мне свой пост (фото + описание). 📩",
+        "en": "You can order advertising in the list. Please send me your post (photo + description). 📩"
+    },
+    "promo": {
+        "ru": "Пожалуйста, отправь промо пост (фото/видео/медиагруппа). 📷🎥",
+        "en": "Please send the promo post (photo/video/media group). 📷🎥"
+    },
+    "smm": {
+        "ru": "Пожалуйста, отправь пост для рассылки всем подписчикам. ✉️",
+        "en": "Please send the post for distribution to all subscribers. ✉️"
+    },
+    "no_permission": {
+        "ru": "У тебя нет прав для использования этой команды. 🚫",
+        "en": "You don't have permission to use this command. 🚫"
+    },
+    "blocked_bot": {
+        "ru": "Ты заблокировал бота. 😔 Если передумаешь, я всегда здесь!",
+        "en": "You've blocked the bot. 😔 If you change your mind, I'm always here!"
+    },
+    "unblocked_bot": {
+        "ru": "Ты разблокировал бота. Рад видеть тебя снова! 😊",
+        "en": "You've unblocked the bot. Happy to see you back! 😊"
+    },
+    "bot_added": {
+        "ru": "Бот добавлен в канал или группу. 👍",
+        "en": "Bot added to the channel or group. 👍"
+    },
+    "payment_request": {
+        "ru": "Выберите способ оплаты: 💳 или ⭐",
+        "en": "Choose a payment method: 💳 or ⭐"
+    },
+    "payment_confirm": {
+        "ru": "Платеж подтвержден. Пожалуйста, отправь свою ссылку и название канала.",
+        "en": "Payment confirmed. Please send your channel link and name."
+    },
+    "promo_fire_activated": {
+        "ru": "🔥 Промо-огонь добавлен к твоему каналу на 2 недели!",
+        "en": "🔥 Promo fire added to your channel for 2 weeks!"
+    }
+}
+
+# Кнопки для бота
+BUTTONS = {
+    "main_menu": {
+        "ru": {
+            "channel": "Канал",
+            "group": "Группа",
+            "vip_tariff": "🔥VIP ТАРИФ🔥",
+            "add_channel": "➕ Добавить канал",
+            "statistics": "📊 Статистика",
+            "change_language": "Поменять язык"
+        },
+        "en": {
+            "channel": "Channel",
+            "group": "Group",
+            "vip_tariff": "🔥VIP TARIFF🔥",
+            "add_channel": "➕ Add channel",
+            "statistics": "📊 Statistics",
+            "change_language": "Change language"
+        }
+    },
+    "language_selection": {
+        "ru": {
+            "rus": "Русский 🇷🇺",
+            "eng": "English 🇬🇧"
+        },
+        "en": {
+            "rus": "Русский 🇷🇺",
+            "eng": "English 🇬🇧"
+        }
+    },
+    "payment_methods": {
+        "ru": {
+            "semi_auto": "💳 Полуавтоматический перевод",
+            "telegram_stars": "⭐ Оплатить звездами Telegram"
+        },
+        "en": {
+            "semi_auto": "💳 Semi-automatic transfer",
+            "telegram_stars": "⭐ Pay with Telegram stars"
+        }
+    },
+    "payment_confirmation": {
+        "ru": {
+            "spam": "Спам ❌",
+            "confirm": "Подтвердить ✅"
+        },
+        "en": {
+            "spam": "Spam ❌",
+            "confirm": "Confirm ✅"
+        }
+    },
+    "vip_subscription": {
+        "ru": {
+            "pay": "Оплатить VIP тариф",
+            "back": "Назад"
+        },
+        "en": {
+            "pay": "Pay VIP tariff",
+            "back": "Back"
+        }
+    },
+    "date_selection": {
+        "ru": {
+            "today": "Сегодня",
+            "tomorrow": "Завтра",
+            "select_date": "Выбрать дату",
+            "now": "Сейчас"
+        },
+        "en": {
+            "today": "Today",
+            "tomorrow": "Tomorrow",
+            "select_date": "Select date",
+            "now": "Now"
+        }
+    },
+    "time_selection": {
+        "ru": {
+            "00_05": "00:05",
+            "00_30": "00:30",
+            "01_00": "01:00",
+            "01_30": "01:30"
+            # и т.д.
+        },
+        "en": {
+            "00_05": "00:05",
+            "00_30": "00:30",
+            "01_00": "01:00",
+            "01_30": "01:30"
+            # и т.д.
+        }
+    },
+    "back_button": {
+        "ru": "⬅️ Назад",
+        "en": "⬅️ Back"
+    }
+}
+
+
+Название файла: config.py
+Расположение файла: ./project\bot\config.py
+
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+API_TOKEN = os.getenv('API_TOKEN')
+
+# Настройки базы данных
+DB_USER = os.getenv('DB_USER')
+DB_PASSWORD = os.getenv('DB_PASSWORD')
+DB_HOST = os.getenv('DB_HOST', 'localhost')
+DB_NAME = os.getenv('DB_NAME')
+
+# Настройки логирования
+LOGGING_LEVEL = os.getenv('LOGGING_LEVEL', 'INFO')
+
+# Переменные для платежей
+PAYMENT_PROVIDER_TOKEN = os.getenv('PAYMENT_PROVIDER_TOKEN')
+
+# Ссылки для списка (работа и др.)
+WORK_LINK = os.getenv('WORK_LINK')
+PROMO_LINK = os.getenv('PROMO_LINK')
+ADD_CHANNEL_LINK = os.getenv('ADD_CHANNEL_LINK')
+
+# Настройки администратора
+ADMIN_ID = int(os.getenv('ADMIN_ID'))
+
+# Другие настройки
+TIMEZONE = os.getenv('TIMEZONE', 'Europe/Moscow')
+
+DB_CONFIG = {
+    'connections': {
+        'default': {
+            'engine': 'tortoise.backends.asyncpg',
+            'credentials': {
+                'host': os.getenv('DB_HOST', 'localhost'),
+                'port': '5432',
+                'user': os.getenv('DB_USER'),
+                'password': os.getenv('DB_PASSWORD'),
+                'database': os.getenv('DB_NAME'),
+            }
+        }
+    },
+    'apps': {
+        'models': {
+            'models': [
+                'models.user',
+                'models.channel',
+                'models.temporary_channel',
+                'models.transaction',
+                'models.advertisement',
+                'models.scheduled_task',
+                'models.promo',
+                'models.referral',
+                'models.channel_statistic',
+                'models.user_statistic',
+                'aerich.models'  # Если используете Aerich для миграций
+            ],
+            'default_connection': 'default',
+        }
+    }
+}
+
+
+
+Название файла: admin.py
+Расположение файла: ./project\bot\handlers\admin.py
+
+# admin.py
+
+from aiogram import Router, types
+from aiogram.filters import Command
+from aiogram.types import Message
+from models.promo import Promo
+from utils.helpers import generate_promo_code
+from config import ADMIN_ID
+
+router = Router()
+
+@router.message(Command("promo"))
+async def promo_handler(message: Message):
+    if message.from_user.id != ADMIN_ID:
+        return
+
+    await message.answer("Пожалуйста, отправьте промо пост (фото/видео/медиагруппа).")
+    await PromoState.waiting_for_promo.set()
+
+from aiogram.fsm.context import FSMContext
+from aiogram.dispatcher.filters.state import State, StatesGroup
+
+class PromoState(StatesGroup):
+    waiting_for_promo = State()
+
+@router.message(PromoState.waiting_for_promo, content_types=types.ContentType.ANY)
+async def receive_promo(message: Message, state: FSMContext):
+    # Сохраняем промо в БД
+    promo_code = generate_promo_code()
+    promo = await Promo.create(
+        media_id=message.photo[-1].file_id if message.photo else None,
+        description=message.caption or message.text,
+        code=promo_code
+    )
+
+    await message.answer(f"Промо сохранено с кодом: {promo_code}")
+    await state.finish()
+
+@router.message(Command("smm"))
+async def smm_handler(message: Message):
+    if message.from_user.id != ADMIN_ID:
+        return
+
+    await message.answer("Пожалуйста, отправьте пост для рассылки всем подписчикам.")
+    await SMMState.waiting_for_post.set()
+
+class SMMState(StatesGroup):
+    waiting_for_post = State()
+
+@router.message(SMMState.waiting_for_post, content_types=types.ContentType.ANY)
+async def receive_smm_post(message: Message, state: FSMContext):
+    # Логика рассылки всем подписчикам
+    await message.answer("Пост отправлен всем подписчикам.")
+    await state.finish()
+
+
+Название файла: channel.py
+Расположение файла: ./project\bot\handlers\channel.py
+
+# channel.py
+
+from aiogram import Router, types
+from aiogram.types import ChatMemberUpdated, Message
+from aiogram.utils.exceptions import ChatAdminRequired
+
+from models.user import User
+from models.channel import Channel, TemporaryChannel
+from utils.helpers import generate_password
+from config import ADMIN_ID
+
+router = Router()
+
+# Обработчик добавления бота в канал/группу
+@router.my_chat_member()
+async def my_chat_member_handler(chat_member_update: ChatMemberUpdated):
+    if chat_member_update.chat.type in ['supergroup', 'channel']:
+        if chat_member_update.new_chat_member.status == 'administrator':
+            channel_id = chat_member_update.chat.id
+            user_id = chat_member_update.from_user.id
+
+            # Проверяем права бота в канале
+            bot_permissions = chat_member_update.new_chat_member
+            required_permissions = ['can_post_messages', 'can_edit_messages', 'can_invite_users', 'can_manage_chat', 'can_pin_messages']
+            for perm in required_permissions:
+                if not getattr(bot_permissions, perm, False):
+                    # Уведомляем пользователя о недостаточных правах
+                    await chat_member_update.bot.send_message(
+                        chat_id=user_id,
+                        text="У бота недостаточно прав. Пожалуйста, предоставьте все необходимые права."
+                    )
+                    return
+
+            # Проверяем, есть ли пользователь в базе данных
+            user = await User.get_or_none(user_id=user_id)
+            if not user:
+                user = await User.create(user_id=user_id, language='ru', status='active')
+
+            # Создаем временную связку в БД
+            password = generate_password()
+            temp_channel = await TemporaryChannel.create(
+                channel_id=channel_id,
+                password=password,
+                user=user,
+                expires_at=None  # Установите время истечения при необходимости
+            )
+
+            # Отправляем пользователю сообщение с инструкциями
+            instruction = f"Чтобы завершить добавление канала в список, отправьте в свой канал сообщение:\n\n<code>/add {password}</code>"
+            await chat_member_update.bot.send_message(chat_id=user_id, text=instruction)
+
+# Обработчик команды /add в канале
+@router.message(Command("add"))
+async def add_channel_handler(message: Message):
+    if message.chat.type in ['supergroup', 'channel']:
+        args = message.get_args()
+        if not args:
+            return
+        password = args.strip()
+
+        # Ищем временную связку по channel_id и password
+        temp_channel = await TemporaryChannel.get_or_none(
+            channel_id=message.chat.id,
+            password=password
+        )
+        if temp_channel:
+            # Удаляем сообщение
+            try:
+                await message.delete()
+            except ChatAdminRequired:
+                pass  # Бот должен иметь права на удаление сообщений
+
+            # Создаем постоянную запись канала в БД
+            channel, created = await Channel.get_or_create(
+                channel_id=message.chat.id,
+                defaults={
+                    'name': message.chat.title,
+                    'link': message.chat.username or '',
+                    'user': temp_channel.user,
+                    'status': 'free',
+                    'date_expiration': None
+                }
+            )
+            if not created:
+                channel.status = 'free'
+                channel.date_expiration = None
+                await channel.save()
+
+            # Удаляем временную запись
+            await temp_channel.delete()
+
+            # Генерируем ссылку с запросами на вступление (если необходимо)
+
+            # Отправляем подтверждение пользователю
+            await message.bot.send_message(
+                chat_id=channel.user.user_id,
+                text="Канал успешно добавлен в список!"
+            )
+
+
+Название файла: ads.py
+Расположение файла: ./project\bot\handlers\ads.py
+
+# ads.py
+
+from aiogram import Router, types
+from aiogram.filters import Command
+from aiogram.types import Message
+from models.user import User
+from models.advertisement import Advertisement
+from data.messages import MESSAGES
+from config import ADMIN_ID
+from aiogram.fsm.context import FSMContext
+from aiogram.fsm.state import State, StatesGroup
+
+router = Router()
+
+class AdvertisementState(StatesGroup):
+    waiting_for_ad = State()
+    waiting_for_buttons = State()
+    waiting_for_confirmation = State()
+
+@router.message(Command("adsbot"))
+async def adsbot_handler(message: Message, state: FSMContext, user: User):
+    lang = user.language
+    await message.answer(MESSAGES["adsbot"][lang])
+    await state.set_state(AdvertisementState.waiting_for_ad)
+    await state.update_data(ad_type='ads_in_bot')
+
+@router.message(Command("adslist"))
+async def adslist_handler(message: Message, state: FSMContext, user: User):
+    lang = user.language
+    await message.answer(MESSAGES["adslist"][lang])
+    await state.set_state(AdvertisementState.waiting_for_ad)
+    await state.update_data(ad_type='ads_in_list')
+
+@router.message(AdvertisementState.waiting_for_ad, content_types=types.ContentType.ANY)
+async def receive_ad(message: Message, state: FSMContext, user: User):
+    data = await state.get_data()
+    ad_type = data.get('ad_type')
+
+    # Сохраняем медиа и описание
+    media_id = None
+    if message.content_type == 'photo':
+        media_id = message.photo[-1].file_id
+    elif message.content_type == 'video':
+        media_id = message.video.file_id
+    # Добавьте обработку других типов контента при необходимости
+
+    ad = await Advertisement.create(
+        user=user,
+        ad_type=ad_type,
+        description=message.caption or message.text,
+        media_id=media_id,
+        status='pending'
+    )
+
+    # Отправляем админу на проверку
+    admin_message = f"Новая реклама от пользователя {user.user_id}.\nID рекламы: {ad.id}"
+    await message.bot.send_message(chat_id=ADMIN_ID, text=admin_message)
+    await message.copy_to(chat_id=ADMIN_ID)
+
+    await message.answer("Спасибо! Ваше объявление отправлено на проверку.")
+    await state.clear()
+
+
+Название файла: events.py
+Расположение файла: ./project\bot\handlers\events.py
+
+# events.py
+
+from aiogram import Router, types
+from aiogram.types import ChatMemberUpdated
+from models.user import User
+from models.channel import Channel
+
+router = Router()
+
+@router.my_chat_member()
+async def my_chat_member_handler(chat_member_update: ChatMemberUpdated):
+    # Этот обработчик уже реализован в channel.py
+    pass
+
+
+Название файла: referral.py
+Расположение файла: ./project\bot\handlers\referral.py
+
+# referral.py
+
+from aiogram import Router, types
+from aiogram.filters import Command
+from models.user import User
+
+router = Router()
+
+@router.message(Command("referral"))
+async def referral_handler(message: types.Message, user: User):
+    referral_link = f"http://t.me/{message.bot.username}?start={user.user_id}"
+    await message.answer(f"Ваша реферальная ссылка: {referral_link}")
+
+
+Папка: project\bot\keyboards
+
+Название файла: channel_owner.py
+Расположение файла: ./project\bot\handlers\channel_owner.py
+
+# channel_owner.py
+
+from aiogram import Router, types
+from aiogram.filters import Command
+from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
+from models.channel import Channel
+from models.user import User
+from utils.helpers import create_pdf_report
+
+router = Router()
+
+@router.message(Command("my_projects"))
+async def my_projects_handler(message: Message, user: User):
+    channels = await Channel.filter(user=user)
+    if channels:
+        keyboard = InlineKeyboardMarkup()
+        for channel in channels:
+            keyboard.add(
+                InlineKeyboardButton(
+                    text=channel.name,
+                    callback_data=f"channel_{channel.id}"
+                )
+            )
+        await message.answer("Ваши проекты:", reply_markup=keyboard)
+    else:
+        await message.answer("У вас нет добавленных каналов.")
+
+@router.callback_query(lambda c: c.data.startswith("channel_"))
+async def channel_options(callback_query: CallbackQuery):
+    channel_id = int(callback_query.data.split("_")[1])
+    channel = await Channel.get_or_none(id=channel_id)
+    if channel:
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [
+                InlineKeyboardButton(text="Добавить 🔥 к названию", callback_data=f"add_fire_{channel_id}")
+            ],
+            [
+                InlineKeyboardButton(text="Статистика", callback_data=f"stats_{channel_id}")
+            ]
+        ])
+        await callback_query.message.edit_text(f"Опции для канала {channel.name}:", reply_markup=keyboard)
+        await callback_query.answer()
+
+@router.callback_query(lambda c: c.data.startswith("add_fire_"))
+async def add_fire(callback_query: CallbackQuery, user: User):
+    channel_id = int(callback_query.data.split("_")[2])
+    channel = await Channel.get_or_none(id=channel_id)
+    if channel:
+        # Создаем транзакцию для оплаты
+        # Реализуйте логику оплаты
+        channel.promo_fire = True
+        # Устанавливаем дату окончания через 2 недели
+        channel.promo_fire_expiration_date = datetime.now() + timedelta(weeks=2)
+        await channel.save()
+        await callback_query.message.answer("🔥 добавлен к вашему каналу на 2 недели!")
+        await callback_query.answer()
+
+
+Название файла: start.py
+Расположение файла: ./project\bot\handlers\start.py
+
+# start.py
+
+from aiogram import Router, types, Bot
+from aiogram.filters import Command
+from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
+
+from data.messages import MESSAGES, BUTTONS
+from models.user import User
+from utils.commands import set_user_commands
+
+router = Router()
+
+@router.message(Command("start"))
+async def start_handler(message: types.Message, lang: str = None, user: User = None):
+    if not lang:
+        # Если язык не установлен, предлагаем выбрать язык
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [
+                InlineKeyboardButton(text=BUTTONS["language_selection"]["ru"]["rus"], callback_data="lang_ru"),
+                InlineKeyboardButton(text=BUTTONS["language_selection"]["ru"]["eng"], callback_data="lang_en"),
+            ]
+        ])
+        await message.answer(MESSAGES["choose_language"]["ru"], reply_markup=keyboard)
+    else:
+        # Формируем клавиатуру в зависимости от языка
+        keyboard = InlineKeyboardMarkup(inline_keyboard=[
+            [
+                InlineKeyboardButton(
+                    text=BUTTONS["main_menu"][lang]["channel"],
+                    url=f"http://t.me/{message.bot.username}?startchannel&admin=post_messages+edit_messages+invite_users+manage_chat+restrict_members"
+                ),
+                InlineKeyboardButton(
+                    text=BUTTONS["main_menu"][lang]["group"],
+                    url=f"http://t.me/{message.bot.username}?startgroup&admin=post_messages+edit_messages+invite_users+manage_chat+restrict_members"
+                ),
+            ],
+            [InlineKeyboardButton(text=BUTTONS["main_menu"][lang]["vip_tariff"], callback_data="VIP")]
+        ])
+        await message.answer(MESSAGES["start"][lang], reply_markup=keyboard)
+
+# Обработчик выбора языка
+@router.callback_query(lambda c: c.data.startswith("lang_"))
+async def change_language(callback_query: CallbackQuery, user: User):
+    lang_code = callback_query.data.split("_")[1]
+    if lang_code not in ['ru', 'en']:
+        lang_code = 'ru'
+
+    # Обновляем язык пользователя в базе данных
+    user.language = lang_code
+    await user.save()
+
+    # Обновляем команды бота для пользователя
+    await set_user_commands(user_id=user.user_id, lang=lang_code)
+
+    # Отправляем приветственное сообщение на выбранном языке
+    await start_handler(callback_query.message, lang=lang_code, user=user)
+    await callback_query.answer()
+
+
+Название файла: statistics.py
+Расположение файла: ./project\bot\handlers\statistics.py
+
+# statistics.py
+
+from aiogram import Router, types
+from aiogram.filters import Command
+from aiogram.types import Message
+from data.messages import MESSAGES
+from services.statistics import get_total_list_audience, get_total_bot_audience, generate_list_preview
+
+router = Router()
+
+@router.message(Command("audlist"))
+async def audlist_handler(message: Message, user: User):
+    lang = user.language
+    total_audience = await get_total_list_audience()
+    await message.answer(MESSAGES["audlist"][lang].format(total=total_audience))
+
+@router.message(Command("audbot"))
+async def audbot_handler(message: Message, user: User):
+    lang = user.language
+    total_users = await get_total_bot_audience()
+    await message.answer(MESSAGES["audbot"][lang].format(total=total_users))
+
+@router.message(Command("showme"))
+async def showme_handler(message: Message, user: User):
+    lang = user.language
+    list_preview = await generate_list_preview(lang)
+    await message.answer(list_preview)
+
+
+Название файла: __init__.py
+Расположение файла: ./project\bot\handlers\__init__.py
+
+
+
+Название файла: vip.py
+Расположение файла: ./project\bot\handlers\vip.py
+
+# vip.py
+
+from aiogram import Router, types
+from aiogram.types import CallbackQuery, Message, InlineKeyboardMarkup, InlineKeyboardButton
+from models.user import User
+from models.transaction import Transaction
+from config import ADMIN_ID
+from data.messages import MESSAGES, BUTTONS
+from utils.payment import process_payment
+
+router = Router()
+
+@router.callback_query(lambda c: c.data == "VIP")
+async def vip_tariff_handler(callback_query: CallbackQuery, user: User):
+    lang = user.language
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [
+            InlineKeyboardButton(text=BUTTONS["payment_methods"][lang]["semi_auto"], callback_data="pay_semi_auto"),
+            InlineKeyboardButton(text=BUTTONS["payment_methods"][lang]["telegram_stars"], callback_data="pay_telegram_stars")
+        ],
+        [
+            InlineKeyboardButton(text=BUTTONS["back_button"][lang], callback_data="back_to_main")
+        ]
+    ])
+    await callback_query.message.edit_text(MESSAGES["payment_request"][lang], reply_markup=keyboard)
+    await callback_query.answer()
+
+@router.callback_query(lambda c: c.data.startswith("pay_"))
+async def process_vip_payment(callback_query: CallbackQuery, user: User):
+    lang = user.language
+    payment_method = callback_query.data.split("_")[1]
+
+    # Создаем транзакцию в БД
+    transaction = await Transaction.create(
+        user=user,
+        amount=800.00,  # Укажите стоимость VIP тарифа
+        payment_method=payment_method,
+        status='pending',
+        transaction_type='vip_subscription'
+    )
+
+    if payment_method == 'semi_auto':
+        # Отправляем реквизиты для оплаты
+        payment_details = "Реквизиты для оплаты:\nКарта: 1234 5678 9012 3456\nСумма: 800₽"
+        await callback_query.message.answer(payment_details)
+
+        # Уведомляем администратора о новом платеже
+        admin_text = f"Новая заявка на оплату VIP тарифа от пользователя {user.user_id}.\nТранзакция ID: {transaction.id}"
+        await callback_query.bot.send_message(chat_id=ADMIN_ID, text=admin_text)
+    elif payment_method == 'telegram_stars':
+        # Реализуйте оплату через звезды Telegram, если возможно
+        pass
+
+    await callback_query.answer()
+
+# Обработчик подтверждения платежа администратором
+@router.message(commands=['confirm_payment'])
+async def confirm_payment_handler(message: Message):
+    if message.from_user.id != ADMIN_ID:
+        return
+
+    args = message.get_args()
+    if not args:
+        await message.answer("Укажите ID транзакции для подтверждения.")
+        return
+
+    transaction_id = int(args.strip())
+    transaction = await Transaction.get_or_none(id=transaction_id)
+    if transaction and transaction.status == 'pending':
+        transaction.status = 'confirmed'
+        await transaction.save()
+
+        # Обновляем статус пользователя и канала
+        user = transaction.user
+        user.status = 'vip'
+        await user.save()
+
+        # Уведомляем пользователя
+        await message.bot.send_message(
+            chat_id=user.user_id,
+            text=MESSAGES["payment_confirm"][user.language]
+        )
+    else:
+        await message.answer("Транзакция не найдена или уже подтверждена.")
+
+
+Название файла: inline.py
+Расположение файла: ./project\bot\keyboards\inline.py
+
+
+
+Папка: project\bot\middlewares
+
+Название файла: reply.py
+Расположение файла: ./project\bot\keyboards\reply.py
+
+
+
+Название файла: __init__.py
+Расположение файла: ./project\bot\keyboards\__init__.py
+
+
+
+Папка: project\bot\models
+
+Название файла: main.py
+Расположение файла: ./project\bot\main.py
+
+# main.py
+
+import asyncio
+import logging
+
+from aiogram import Bot, Dispatcher
+from aiogram.enums import ParseMode
+from aiogram.fsm.storage.memory import MemoryStorage  # Подключаем FSM
+from tortoise import Tortoise
+from utils.logging_config import setup_logging
+from config import API_TOKEN, DB_CONFIG
+from middlewares.user_middleware import UserMiddleware
+from handlers import start, channel, vip, ads, admin, statistics, channel_owner, referral
+from utils.scheduler import setup_scheduler
+
+# Конфигурация логирования
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(filename)s:%(lineno)d #%(levelname)-8s [%(asctime)s] - %(name)s - %(message)s",
+)
+logger = logging.getLogger(__name__)
+
+async def main():
+    logger.info("Starting bot")
+    setup_logging()
+
+    bot = Bot(token=API_TOKEN, parse_mode=ParseMode.HTML)
+    dp = Dispatcher(storage=MemoryStorage())  # Настраиваем FSM storage
+
+    # Подключаем middleware
+    dp.message.middleware(UserMiddleware())
+    dp.callback_query.middleware(UserMiddleware())
+
+    # Регистрируем роутеры
+    dp.include_router(start.router)
+    dp.include_router(channel.router)
+    dp.include_router(vip.router)
+    dp.include_router(ads.router)
+    dp.include_router(admin.router)
+    dp.include_router(statistics.router)
+    dp.include_router(channel_owner.router)
+    dp.include_router(referral.router)
+
+    # Инициализируем базу данных
+    await Tortoise.init(config=DB_CONFIG)
+    await Tortoise.generate_schemas()
+
+    # Настраиваем планировщик
+    setup_scheduler()
+
+    # Запускаем поллинг
+    await dp.start_polling(bot)
+
+if __name__ == "__main__":
+    try:
+        asyncio.run(main())
+    except (KeyboardInterrupt, SystemExit):
+        logger.info("Bot stopped")
+
+
+Название файла: __init__.py
+Расположение файла: ./project\bot\middlewares\__init__.py
+
+
+
+Название файла: user_middleware.py
+Расположение файла: ./project\bot\middlewares\user_middleware.py
+
+# user_middleware.py
+
+from typing import Any, Awaitable, Callable, Dict
+
+from aiogram import types
+from aiogram.dispatcher.middlewares.base import BaseMiddleware
+from models.user import User
+
+class UserMiddleware(BaseMiddleware):
+    async def __call__(
+        self,
+        handler: Callable[[types.TelegramObject, Dict[str, Any]], Awaitable[Any]],
+        event: types.TelegramObject,
+        data: Dict[str, Any],
+    ) -> Any:
+        if isinstance(event, (types.Message, types.CallbackQuery)):
+            user_id = event.from_user.id
+
+            # Проверяем, существует ли пользователь в базе данных
+            user = await User.get_or_none(user_id=user_id)
+            if not user:
+                # Если пользователь не существует, создаем его с языком по умолчанию ('ru')
+                user = await User.create(user_id=user_id, language='ru', status='active')
+
+            # Получаем язык пользователя
+            data['lang'] = user.language
+
+            # Добавляем пользователя в data для возможного использования
+            data['user'] = user
+
+        return await handler(event, data)
+
+
+Название файла: channel.py
+Расположение файла: ./project\bot\models\channel.py
+
+from tortoise import fields, models
+
+
+class Channel(models.Model):
+    id = fields.IntField(pk=True)
+    channel_id = fields.BigIntField(unique=True)  # Telegram ID канала
+    name = fields.CharField(max_length=255)
+    link = fields.CharField(max_length=255)
+    user = fields.ForeignKeyField('models.User', related_name='channels')
+    date_added = fields.DatetimeField(auto_now_add=True)
+    status = fields.CharField(max_length=20, default='free')  # 'free', 'vip', 'blocked'
+    date_expiration = fields.DatetimeField(null=True)
+    subscribers_count = fields.IntField(default=0)
+    promo_fire = fields.BooleanField(default=False)
+    promo_fire_expiration_date = fields.DatetimeField(null=True)
+
+    class Meta:
+        table = "channels"
+
+    def __str__(self):
+        return f"Channel(id={self.channel_id}, name={self.name})"
+
+
+Название файла: channel_statistic.py
+Расположение файла: ./project\bot\models\channel_statistic.py
+
+from tortoise import fields, models
+
+
+class ChannelStatistic(models.Model):
+    id = fields.IntField(pk=True)
+    channel = fields.ForeignKeyField('models.Channel', related_name='statistics')
+    date = fields.DateField()
+    subscribers_count = fields.IntField()
+    joins_from_bot = fields.IntField(default=0)
+    joins_from_list = fields.IntField(default=0)
+
+    class Meta:
+        table = "channel_statistics"
+
+    def __str__(self):
+        return f"ChannelStatistic(channel_id={self.channel.channel_id}, date={self.date})"
+
+
+Название файла: advertisement.py
+Расположение файла: ./project\bot\models\advertisement.py
+
+from tortoise import fields, models
+from tortoise.contrib.pydantic import pydantic_model_creator
+
+
+class Advertisement(models.Model):
+    id = fields.IntField(pk=True)
+    user = fields.ForeignKeyField('models.User', related_name='advertisements')
+    ad_type = fields.CharField(max_length=20)  # 'ads_in_bot', 'ads_in_list', 'ads_in_channels'
+    media_id = fields.CharField(max_length=255, null=True)  # File ID в Telegram
+    description = fields.TextField()
+    buttons = fields.JSONField(null=True)
+    status = fields.CharField(max_length=20, default='pending')  # 'pending', 'approved', etc.
+    price = fields.DecimalField(max_digits=10, decimal_places=2, null=True)
+    scheduled_datetime = fields.DatetimeField(null=True)
+    date_created = fields.DatetimeField(auto_now_add=True)
+    date_updated = fields.DatetimeField(auto_now=True)
+
+    class Meta:
+        table = "advertisements"
+
+    def __str__(self):
+        return f"Advertisement(id={self.id}, ad_type={self.ad_type}, status={self.status})"
+
+
+Название файла: promo.py
+Расположение файла: ./project\bot\models\promo.py
+
+from tortoise import fields, models
+
+
+class Promo(models.Model):
+    id = fields.IntField(pk=True)
+    media_id = fields.CharField(max_length=255, null=True)
+    description = fields.TextField()
+    buttons = fields.JSONField(null=True)
+    code = fields.CharField(max_length=100, unique=True)
+    date_created = fields.DatetimeField(auto_now_add=True)
+
+    class Meta:
+        table = "promos"
+
+    def __str__(self):
+        return f"Promo(id={self.id}, code={self.code})"
+
+
+Название файла: referral.py
+Расположение файла: ./project\bot\models\referral.py
+
+from tortoise import fields, models
+
+
+class Referral(models.Model):
+    id = fields.IntField(pk=True)
+    user = fields.ForeignKeyField('models.User', related_name='referrals_made')
+    referred_user = fields.ForeignKeyField('models.User', related_name='referred_by')
+    date_referred = fields.DatetimeField(auto_now_add=True)
+    commission_earned = fields.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+
+    class Meta:
+        table = "referrals"
+
+    def __str__(self):
+        return f"Referral(user_id={self.user.user_id}, referred_user_id={self.referred_user.user_id})"
+
+
+Название файла: scheduled_task.py
+Расположение файла: ./project\bot\models\scheduled_task.py
+
+from tortoise import fields, models
+
+
+class ScheduledTask(models.Model):
+    id = fields.IntField(pk=True)
+    task_type = fields.CharField(max_length=50)  # 'send_list', 'send_ad', 'notify_user', etc.
+    scheduled_datetime = fields.DatetimeField()
+    parameters = fields.JSONField()
+    status = fields.CharField(max_length=20, default='pending')  # 'pending', 'completed', 'failed'
+    date_created = fields.DatetimeField(auto_now_add=True)
+    date_updated = fields.DatetimeField(auto_now=True)
+
+    class Meta:
+        table = "scheduled_tasks"
+
+    def __str__(self):
+        return f"ScheduledTask(id={self.id}, task_type={self.task_type}, status={self.status})"
+
+
+Название файла: temporary_channel.py
+Расположение файла: ./project\bot\models\temporary_channel.py
+
+from tortoise import fields, models
+
+
+class TemporaryChannel(models.Model):
+    id = fields.IntField(pk=True)
+    channel_id = fields.BigIntField()
+    password = fields.CharField(max_length=255)
+    user = fields.ForeignKeyField('models.User', related_name='temporary_channels')
+    date_created = fields.DatetimeField(auto_now_add=True)
+    expires_at = fields.DatetimeField()
+
+    class Meta:
+        table = "temporary_channels"
+
+    def __str__(self):
+        return f"TemporaryChannel(channel_id={self.channel_id}, user_id={self.user.user_id})"
+
+
+Название файла: transaction.py
+Расположение файла: ./project\bot\models\transaction.py
+
+from tortoise import fields, models
+
+
+class Transaction(models.Model):
+    id = fields.IntField(pk=True)
+    user = fields.ForeignKeyField('models.User', related_name='transactions')
+    amount = fields.DecimalField(max_digits=10, decimal_places=2)
+    payment_method = fields.CharField(max_length=20)  # 'semi-automatic', 'telegram_stars'
+    status = fields.CharField(max_length=20, default='pending')  # 'pending', 'confirmed', 'failed'
+    date_created = fields.DatetimeField(auto_now_add=True)
+    date_confirmed = fields.DatetimeField(null=True)
+    transaction_type = fields.CharField(max_length=50)  # 'vip_subscription', 'promo_fire', etc.
+    details = fields.TextField(null=True)
+
+    class Meta:
+        table = "transactions"
+
+    def __str__(self):
+        return f"Transaction(id={self.id}, user_id={self.user.user_id}, amount={self.amount})"
+
+
+Папка: project\bot\services
+
+Название файла: user_statistic.py
+Расположение файла: ./project\bot\models\user_statistic.py
+
+from tortoise import fields, models
+
+
+class UserStatistic(models.Model):
+    id = fields.IntField(pk=True)
+    user = fields.ForeignKeyField('models.User', related_name='statistics')
+    date = fields.DateField()
+    messages_sent = fields.IntField(default=0)
+    ads_requested = fields.IntField(default=0)
+
+    class Meta:
+        table = "user_statistics"
+
+    def __str__(self):
+        return f"UserStatistic(user_id={self.user.user_id}, date={self.date})"
+
+
+Название файла: user.py
+Расположение файла: ./project\bot\models\user.py
+
+from tortoise import fields, models
+
+
+class User(models.Model):
+    id = fields.IntField(pk=True)
+    user_id = fields.BigIntField(unique=True)  # Telegram ID пользователя
+    language = fields.CharField(max_length=2, default='ru')  # 'ru' или 'en'
+    status = fields.CharField(max_length=20, default='active')  # 'active', 'inactive', 'blocked'
+    date_joined = fields.DatetimeField(auto_now_add=True)
+    referral = fields.ForeignKeyField('models.User', related_name='referrals', null=True)
+    balance = fields.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    total_referrals = fields.IntField(default=0)
+    is_admin = fields.BooleanField(default=False)
+
+    class Meta:
+        table = "users"
+
+    def __str__(self):
+        return f"User(id={self.user_id}, status={self.status})"
+
+
+Название файла: __init__.py
+Расположение файла: ./project\bot\models\__init__.py
+
+
+
+Название файла: list_generator.py
+Расположение файла: ./project\bot\services\list_generator.py
+
+from models.channel import Channel
+from aiogram import Bot
+from config import ADD_CHANNEL_LINK
+
+async def send_daily_list(bot: Bot):
+    """Отправка листа каналов в заданные группы"""
+    channels = await Channel.filter(status__in=['free', 'vip']).order_by('-subscribers_count')
+    
+    message_text = "-----------------------\n"
+    message_text += "НАЗВАНИЕ ЛИСТА 🎯\n"
+    message_text += "-----------------------\n"
+
+    for channel in channels:
+        message_text += f"┏▷ {channel.name} - {channel.subscribers_count} подписчиков\n"
+        message_text += f"┣ 🔗 {channel.link}\n"
+
+    message_text += f"📢 МЕСТО ДЛЯ РЕКЛАМНОГО ПОСТА 📢\n"
+    message_text += f"🔄 РАБОТА ({ADD_CHANNEL_LINK})\n"
+    # ... остальные блоки текста
+
+    # Отправка листа в указанные группы (пример)
+    groups = await Channel.filter(status='group')  # Пример фильтрации групп
+    for group in groups:
+        await bot.send_message(chat_id=group.channel_id, text=message_text)
+
+
+Папка: project\bot\utils
+
+Название файла: payment.py
+Расположение файла: ./project\bot\services\payment.py
+
+from models.transaction import Transaction
+
+async def process_payment(transaction_id: int) -> bool:
+    """Обработка платежа по транзакции"""
+    transaction = await Transaction.get_or_none(id=transaction_id)
+    if transaction and transaction.status == 'pending':
+        # Проверка платежа. Например, если администратор подтверждает платеж
+        transaction.status = 'confirmed'
+        await transaction.save()
+        return True
+    return False
+
+
+Название файла: statistics.py
+Расположение файла: ./project\bot\services\statistics.py
+
+# statistics.py
+
+from models.channel import Channel
+from models.user import User
+
+async def get_total_list_audience():
+    channels = await Channel.filter(status__in=['free', 'vip'])
+    total_audience = 0
+    for channel in channels:
+        total_audience += channel.subscribers_count
+    return total_audience
+
+async def get_total_bot_audience():
+    total_users = await User.filter(status='active').count()
+    return total_users
+
+async def generate_list_preview(lang='ru'):
+    # Логика генерации листа
+    channels = await Channel.filter(status__in=['free', 'vip']).order_by('-subscribers_count')
+    list_text = "Актуальный лист:\n\n"
+    for channel in channels:
+        list_text += f"🔗 {channel.name} ({channel.link})\n"
+    return list_text
+
+from models.channel_statistic import ChannelStatistic
+from models.channel import Channel
+from datetime import date
+
+async def update_statistics():
+    """Обновление статистики каналов"""
+    channels = await Channel.filter(status__in=['free', 'vip'])
+    
+    for channel in channels:
+        # Пример обновления количества подписчиков (нужно интегрировать с API Telegram для получения подписчиков)
+        current_subscribers = channel.subscribers_count  # Заглушка
+        await ChannelStatistic.create(
+            channel=channel,
+            date=date.today(),
+            subscribers_count=current_subscribers,
+            joins_from_bot=0,  # Заглушка
+            joins_from_list=0  # Заглушка
+        )
+
+
+Название файла: __init__.py
+Расположение файла: ./project\bot\services\__init__.py
+
+
+
+Название файла: logging_config.py
+Расположение файла: ./project\bot\utils\logging_config.py
+
+import logging
+
+def setup_logging(log_file: str = './project/logs/logging.txt'):
+    """Настройка логирования"""
+    logging.basicConfig(
+        filename=log_file,
+        filemode='a',
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+        level=logging.INFO
+    )
+
+
+Название файла: helpers.py
+Расположение файла: ./project\bot\utils\helpers.py
+
+import random
+import string
+from fpdf import FPDF
+import hashlib
+from datetime import datetime
+
+def generate_password(length: int = 8) -> str:
+    """Генерация случайного пароля"""
+    chars = string.ascii_letters + string.digits
+    return ''.join(random.choice(chars) for _ in range(length))
+
+
+
+def generate_promo_code() -> str:
+    """Генерация уникального промо-кода"""
+    current_time = datetime.now().isoformat()
+    return hashlib.sha1(current_time.encode()).hexdigest()[:10]
+
+
+
+def create_pdf_report(data: dict, filename: str = 'report.pdf') -> str:
+    """Создание простого PDF отчета по каналам"""
+    pdf = FPDF()
+    pdf.add_page()
+
+    pdf.set_font("Arial", size=12)
+    pdf.cell(200, 10, txt="Отчет по каналам", ln=True, align="C")
+
+    for key, value in data.items():
+        pdf.cell(200, 10, txt=f"{key}: {value}", ln=True)
+
+    filepath = f"./project/reports/{filename}"
+    pdf.output(filepath)
+    return filepath
+
+
+Папка: project\logs
+
+Название файла: scheduler.py
+Расположение файла: ./project\bot\utils\scheduler.py
+
+# scheduler.py
+
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from services.list_generator import send_daily_list
+from services.statistics import update_statistics
+
+scheduler = AsyncIOScheduler()
+
+def setup_scheduler():
+    scheduler.add_job(send_daily_list, 'cron', hour=10, timezone='Europe/Moscow')
+    scheduler.add_job(update_statistics, 'interval', hours=1)
+    scheduler.start()
+
+
+Название файла: __init__.py
+Расположение файла: ./project\bot\utils\__init__.py
+
+
+
+Название файла: __init__.py
+Расположение файла: ./project\bot\__init__.py
+
+
+
+Название файла: README.md
+Расположение файла: ./project\README.md
+
+
+

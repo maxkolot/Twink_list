@@ -1,0 +1,44 @@
+project/
+├── bot/
+│   ├── __init__.py
+│   ├── main.py
+│   ├── config.py
+│   ├── handlers/
+│   │   ├── __init__.py
+│   │   ├── start.py
+│   │   ├── vip.py
+│   │   ├── channel.py
+│   │   ├── ads.py
+│   │   ├── admin.py
+│   ├── keyboards/
+│   │   ├── __init__.py
+│   │   ├── inline.py
+│   │   ├── reply.py
+│   ├── middlewares/
+│   │   ├── __init__.py
+│   │   ├── user_middleware.py
+│   ├── models/
+│   │   ├── __init__.py
+│   │   ├── base.py
+│   │   ├── user.py
+│   │   ├── channel.py
+│   │   ├── transaction.py
+│   │   ├── promo.py
+│   ├── utils/
+│   │   ├── __init__.py
+│   │   ├── logging_config.py
+│   │   ├── scheduler.py
+│   │   ├── helpers.py
+│   ├── services/
+│   │   ├── __init__.py
+│   │   ├── payment.py
+│   │   ├── statistics.py
+│   ├── data/
+│   │   ├── __init__.py
+│   │   ├── constants.py
+│   │   ├── messages.py
+│   ├── .env
+├── logs/
+│   └── bot.log
+├── requirements.txt
+├── README.md
